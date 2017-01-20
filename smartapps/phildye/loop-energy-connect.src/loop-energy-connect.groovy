@@ -22,8 +22,8 @@ definition(
     author: "Phil Dye",
     description: "Connect your Loop Energy monitor to SmartThings",
     category: "My Apps",
-    iconUrl: "https://www.your-loop.com/sites/default/themes/navetas_theme/xlogo.png.pagespeed.ic.PFQmk-uQVn.png",
-    iconX2Url: "https://www.your-loop.com/sites/default/themes/navetas_theme/xlogo.png.pagespeed.ic.PFQmk-uQVn.png",
+    iconUrl: "https://raw.githubusercontent.com/PhilDye/loop-energy/master/devicetypes/phildye/loop-energy.src/images/loop-energy.png",
+    iconX2Url: "https://raw.githubusercontent.com/PhilDye/loop-energy/master/devicetypes/phildye/loop-energy.src/images/loop-energy.png",
     singleInstance: true
     )
     {
