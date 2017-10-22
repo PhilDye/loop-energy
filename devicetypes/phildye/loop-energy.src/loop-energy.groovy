@@ -15,7 +15,7 @@
  */
 metadata {
 	definition (name: "Loop Energy", namespace: "PhilDye", author: "Phil Dye") {
-		// capability "Energy Meter"
+		capability "Energy Meter"
 		capability "Power Meter"
 		capability "Sensor"
         capability "Refresh"
@@ -24,7 +24,7 @@ metadata {
 		command "poll"
         
 		attribute "power", "string"
-
+		attribute "energy", "string"
 	}
 
 
@@ -35,7 +35,7 @@ metadata {
     }
 
     tiles(scale: 2) {
-		multiAttributeTile(name:"power", type:"generic", width:6, height:4, wordWrap: true) {
+		multiAttributeTile(name:"power", type:"generic", width:6, height:4, wordWrap: false) {
     		tileAttribute("device.power", key: "PRIMARY_CONTROL") {
       			attributeState "default", label: '${currentValue} W', 
                 foregroundColor: "#000000",
@@ -48,6 +48,9 @@ metadata {
 				]
     		}
 		}
+      	valueTile("energy", "device.energy", width: 4, height: 2, decoration: "flat") {
+			state "default", label: 'Energy\r\n\${currentValue} kWh'
+		}		
       	valueTile("lastUpdated", "device.lastUpdated", width: 4, height: 2, decoration: "flat") {
 			state "default", label: 'Last updated\r\n\${currentValue}'
 		}
@@ -56,7 +59,7 @@ metadata {
 		}
         
         main (["power"])
-        details (["power","lastUpdated","refresh"])
+        details (["power","energy","lastUpdated","refresh"])
 	}
 }
 

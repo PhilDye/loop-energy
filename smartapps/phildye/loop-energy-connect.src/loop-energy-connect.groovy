@@ -25,8 +25,6 @@ definition(
     singleInstance: true
     )
     {
-    	appSetting "elecSerial"
-        appSetting "elecSecret"
         appSetting "apiUrl"
     }
 
@@ -134,6 +132,8 @@ def refresh(child=null)  {
 
                 log.debug "sendingEvent to child ${dni}; data = ${data}"
                 child?.sendEvent(name: "power", unit: "W", value: data.power)
+                child?.sendEvent(name: "energy", unit: "kWh", value: data.totalEnergy)
+
                 child?.sendEvent(name: "lastUpdated", value: t.format( 'dd/MM/yyyy HH:mm' ), displayed: false)
                 
                // child?.updateReadingData(data.power[0], data.latestData[0])
