@@ -42,8 +42,8 @@ metadata {
                 backgroundColors:[
 					[value: 500, color: "#00cc00"], //Light Green
                 	[value: 1000, color: "#79b821"], //Darker Green
-                	[value: 3000, color: "#ffa81e"], //Orange
-					[value: 4000, color: "#FFF600"], //Yellow
+                    [value: 3000, color: "#FFF600"], //Yellow
+                	[value: 4000, color: "#ffa81e"], //Orange
                     [value: 5000, color: "#fb1b42"] //Bright Red
 				]
     		}
