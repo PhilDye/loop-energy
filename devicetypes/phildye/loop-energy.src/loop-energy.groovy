@@ -40,17 +40,17 @@ metadata {
       			attributeState "default", label: '${currentValue} W', 
                 foregroundColor: "#000000",
                 backgroundColors:[
-					[value: 500, color: "#00cc00"], //Light Green
-                	[value: 1000, color: "#79b821"], //Darker Green
-                    [value: 3000, color: "#FFF600"], //Yellow
-                	[value: 4000, color: "#ffa81e"], //Orange
-                    [value: 5000, color: "#fb1b42"] //Bright Red
+					[value: 500, color: "#90d2a7"], //Light Green
+                	[value: 1000, color: "#44b621"], //Darker Green
+                    [value: 3000, color: "#f1d801"], //Yellow
+                	[value: 4000, color: "#d04e00"], //Orange
+                    [value: 5000, color: "#bc2323"] //Bright Red
 				]
-    		}
-		}
-      	valueTile("energy", "device.energy", width: 4, height: 2, decoration: "flat") {
-			state "default", label: 'Energy\r\n\${currentValue} kWh'
-		}		
+    		},
+			tileAttribute ("device.energy", key: "SECONDARY_CONTROL") {
+				attributeState "energy", label:'Energy: ${currentValue}kWh', icon: "st.Appliances.appliances17"
+			}
+		}	
       	valueTile("lastUpdated", "device.lastUpdated", width: 4, height: 2, decoration: "flat") {
 			state "default", label: 'Last updated\r\n\${currentValue}'
 		}
