@@ -37,7 +37,7 @@ metadata {
     tiles(scale: 2) {
 		multiAttributeTile(name:"power", type:"generic", width:6, height:4, wordWrap: false) {
     		tileAttribute("device.power", key: "PRIMARY_CONTROL") {
-      			attributeState "default", label: '${currentValue} W', 
+      			attributeState "default", label: '${currentValue}W', 
                 foregroundColor: "#000000",
                 backgroundColors:[
 					[value: 500, color: "#90d2a7"], //Light Green
@@ -46,7 +46,7 @@ metadata {
                 	[value: 4000, color: "#d04e00"], //Orange
                     [value: 5000, color: "#bc2323"] //Bright Red
 				]
-    		},
+    		}
 			tileAttribute ("device.energy", key: "SECONDARY_CONTROL") {
 				attributeState "energy", label:'Energy: ${currentValue}kWh', icon: "st.Appliances.appliances17"
 			}
