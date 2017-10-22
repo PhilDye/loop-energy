@@ -13,8 +13,6 @@
  *  for the specific language governing permissions and limitations under the License.
  *
  */
-private apiUrl() 			{ "https://loop-proxy.herokuapp.com" }
-
 
 definition(
     name: "Loop Energy (Connect)",
@@ -29,6 +27,7 @@ definition(
     {
     	appSetting "elecSerial"
         appSetting "elecSecret"
+        appSetting "apiUrl"
     }
 
 
@@ -66,14 +65,14 @@ def initialize() {
     log.debug "Initializing with settings: ${settings}"
         
     def deviceListParams = [
-        uri: "https://loop-proxy.herokuapp.com",
-        path: "/",
+        uri: appSettings.apiUrl,
+        // path: "/",
         requestContentType: "application/json"
         ]
 
     def devices = httpGet(deviceListParams) { resp ->
     
-        log.debug "got resp: ${resp.data}"
+        log.debug "got req: ${deviceListParams} resp: ${resp.data}"
         
         if(resp.status == 200 && resp.data) {
         
@@ -117,14 +116,14 @@ def refresh(child=null)  {
     log.debug "child is ${child}"
     def result = false
     def pollParams = [
-            uri: "https://loop-proxy.herokuapp.com",
-            path: "/"
+            uri: appSettings.apiUrl,
+            //path: "/"
             ]
 
     try {
         httpGet(pollParams) { resp ->
 
-            log.info "refresh(child) >> resp.status = ${resp.status}, resp.data = ${resp.data}"
+            log.info "refresh(child) >> req = ${pollParams} resp.status = ${resp.status}, resp.data = ${resp.data}"
 
             if(resp.status == 200 && resp.data) {
                 def dni = "${getNamePrefix()}:${resp.data.serial.toString()}"
@@ -135,7 +134,7 @@ def refresh(child=null)  {
 
                 log.debug "sendingEvent to child ${dni}; data = ${data}"
                 child?.sendEvent(name: "power", unit: "W", value: data.power)
-				child?.sendEvent(name: "lastUpdated", value: t.format( 'dd/MM/yyyy HH:mm' ), displayed: false)
+                child?.sendEvent(name: "lastUpdated", value: t.format( 'dd/MM/yyyy HH:mm' ), displayed: false)
                 
                // child?.updateReadingData(data.power[0], data.latestData[0])
 
@@ -163,4 +162,5 @@ def getLoopEnergyDisplayName(returnObject) {
 def getNamePrefix() {
 	return "Loop Energy"
 }
+
 
